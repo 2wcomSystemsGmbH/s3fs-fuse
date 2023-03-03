@@ -106,3 +106,5 @@ bin/
 #
 /Arm/
 /Intel/
+/ArmDebug/
+/IntelDebug/
