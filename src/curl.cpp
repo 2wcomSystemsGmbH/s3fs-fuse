@@ -575,8 +575,14 @@ bool S3fsCurl::LocateBundle()
                     BF.close();
                     S3fsCurl::curl_ca_bundle = "/usr/share/ssl/certs/ca-bundle.crt";
                 }else{
-                    S3FS_PRN_ERR("%s: /.../ca-bundle.crt is not readable", program_name.c_str());
-                    return false;
+                    BF.open("/opt/2wcom/CA.pem");
+                    if(BF.good()){
+                        BF.close();
+                        S3fsCurl::curl_ca_bundle = "/opt/2wcom/CA.pem";
+                    }else{
+                        S3FS_PRN_ERR("%s: /.../ca-bundle.crt is not readable", program_name.c_str());
+                        return false;
+                    }
                 }
             }
         }
